@@ -48,6 +48,29 @@ F2 = [
     0 0 0 0
 ]
 
+
+# 3
+E3 = [
+    (1, 2, 1),
+    (1, 3, 8),
+    (2, 4, 4),
+    (2, 3, 2),
+    (3, 4, 2)
+]
+
+G3 = DiGraph(4)
+C3 = zeros(Int, nv(G), nv(G))
+for e in E3
+    u, v, c = e
+    add_edge!(G3, u, v)
+    C3[u, v] = c
+end
+F3 = [
+    0 1 2 0
+    0 0 0 1
+    0 0 0 2
+    0 0 0 0
+]
 function draw_network(G, E, F, C)
     locs_x = Vector{Float32}([0, 1, 1, 2])
     locs_y = Vector{Float32}([1, 0, 2, 1])
