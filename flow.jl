@@ -40,7 +40,7 @@ function draw_network(G, E, F)
 end
 
 source, sink = 1, 6
-function find_aug_path()
+function find_aug_path(G, F, C, source, sink)
     Q = Queue(Int)
     V = falses(nv(G))
     P = Dict{Int, Int}()
@@ -77,7 +77,7 @@ end
 function max_flow(G, E, C, source, sink)
     F = zeros(C)
     #find augmenting path
-    path = find_aug_path()
+    path = find_aug_path(G, F, C, source, sink)
     while length(path) > 0
         f = typemax(Int)
         draw_network(G,E,F)
