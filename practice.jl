@@ -113,3 +113,5 @@ end
 function draw_initial_network()
     draw_network(G, E, F)
 end
+
+println("Praksisrammeverk importert. Beep boop")
