@@ -16,8 +16,7 @@ module FlowChecker
           AnswerMetadata(Int, x::Int -> rangeCheck(x, 1, 3))])
   )
 
-  function get_tests()
-    #TODO: This should read from file
+  function get_augpath_tests()
     input = []
     output= []
 
@@ -43,7 +42,7 @@ module FlowChecker
 
         for i = 3:numE+2
             u, v, f, c = toIntList(split(lines[i]))
-            push!(E, (u, v, f))
+            push!(E, (u, v, c))
             add_edge!(G, u, v)
             C[u, v] = c
             F[u, v] = f
@@ -91,7 +90,78 @@ module FlowChecker
     #F = zeros(C)
     #return (G, E, F, C, 1, 6)
   end
-  test_input, test_expected_output = get_tests()
+
+
+  function get_maxflow_tests()
+    input = []
+    output= []
+
+    test_folder = "tests/maxflow/"
+    test_files = ["1.txt", "2.txt", "3.txt", "4.txt", "5.txt", "6.txt", "7.txt"]
+
+    toIntList = x -> map(y -> parse(Int64, y), x)
+    for file in test_files
+
+        lines = []
+        open(test_folder * file) do f
+            lines = readlines(f)
+        end
+
+        numV, numE = toIntList(split(lines[1]))
+
+        so, si = toIntList(split(lines[2]))
+
+        G = DiGraph(numV)
+        C = zeros(Int, numV, numV)
+        E = []
+
+        for i = 3:numE+2
+            u, v, c = toIntList(split(lines[i]))
+            push!(E, (u, v, c))
+            add_edge!(G, u, v)
+            C[u, v] = c
+        end
+
+        push!(input, (G, E, C, so, si))
+
+        answer = parse(Int64, lines[numE+3])
+
+        push!(output, AnyAnswer(Set([answer])))
+        
+    end
+
+    return input, output
+
+    #G = DiGraph(6)
+    #E = [
+    #    (1, 2, 16),
+    #    (1, 3, 13),
+    #    (3, 2, 4),
+    #    (2, 4, 12),
+    #    (4, 3, 9),
+    #    (3, 5, 14),
+    #    (4, 6, 20),
+    #    (5, 4, 7),
+    #    (5, 6, 4)
+    #]
+
+    #sort!(E)
+
+    #C = zeros(Int, nv(G), nv(G))
+
+    #for e in E
+    #    u, v, c = e
+    #    add_edge!(G, u, v)
+    #    C[u, v] = c
+    #end
+    #F = zeros(C)
+    #return (G, E, F, C, 1, 6)
+  end
+
+
+  test_augpath_input, test_augpath_expected_output = get_augpath_tests()
+
+  test_maxflow_input, test_maxflow_expected_output = get_maxflow_tests()
 
   #test_input = [get_input()]
 
