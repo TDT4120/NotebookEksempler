@@ -81,5 +81,5 @@ function draw_network(G, E, F, C)
     sleep(1)
 end
 
-#draw_network(G, E, F)
-println(F)
+println("Teorirammeverk importert. Boop beep")
+
