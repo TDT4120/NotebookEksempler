@@ -6,3 +6,5 @@ Nå er det nye øvingssystemet klart for å pilottestes. Det nye systemet bruker
 Øvingen handler om maks flyt og er frivillig, men er definitivt pensumrelevant og vi vil gjerne at nettopp DU tar deg tid til å gjøre den, og gi tilbakemelding på systemet.
 
 Du finner øvingen under (øvinger?)
+
+Etter at du har gjort øvingen vil vi gjerne at du fyller ut dette tilbakemeldingsskjemaet her: https://goo.gl/forms/T0sPehbFRD3rJSVs1
